@@ -17,13 +17,9 @@ defmodule AptdecoWeb.Router do
   scope "/", AptdecoWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", AptdecoLive
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", AptdecoWeb do
-  #   pipe_through :api
-  # end
 
   # Enables LiveDashboard only for development
   #
