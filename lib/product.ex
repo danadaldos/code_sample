@@ -20,14 +20,18 @@ defmodule Aptdeco.Product do
       }) do
     %__MODULE__{
       title: title,
-      price: price,
-      retail_price: retail_price,
+      price: Money.parse!(price),
+      retail_price: retail_price(retail_price),
       qty: qty,
       is_set: is_set,
-      set_qty: set_qty,
+      set_qty: set_quantity(set_qty),
       image_path: image_path,
       region: region
     }
   end
-end
 
+  def retail_price("undefined"), do: nil
+  def retail_price(price), do: Money.parse!(price)
+  def set_quantity("undefined"), do: nil
+  def set_quantity(qty), do: qty
+end
