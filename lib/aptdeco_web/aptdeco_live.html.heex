@@ -1,7 +1,13 @@
+<.form let={f} for={:number_of_products} phx-change="change_number_of_products" >
+  <%= label f, :number_of_products %>
+  <%= select f, :number, [10, 25, 50, 100] %>
+</.form>
 <table>
-  <tr>
-    <%= for product <- @products do %>
-      <.product_card product={product} />
-    <% end %>
-  </tr>
+  <%= for row <- @rows do %>
+    <tr>
+      <%= for product <- row.entries do %>
+        <.product_card product={product} />
+      <% end %>
+    </tr>
+  <% end %>
 </table>

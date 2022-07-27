@@ -47,7 +47,9 @@ defmodule Aptdeco.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:money, "~> 1.9"}
+      {:money, "~> 1.9"},
+      {:scrivener, "~> 2.0"},
+      {:scrivener_list, "~> 2.0"}
     ]
   end
 
