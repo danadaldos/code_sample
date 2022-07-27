@@ -3,9 +3,9 @@
   <%= select f, :number, [10, 25, 50, 100] %>
 </.form>
 <table>
-  <%= for row <- @rows do %>
-    <tr>
-      <%= for product <- row.entries do %>
+  <%= for {row_number, row_data} <- @rows do %>
+    <tr data-role={"row-number-#{row_number}"}>
+      <%= for product <- row_data.entries do %>
         <.product_card product={product} />
       <% end %>
     </tr>

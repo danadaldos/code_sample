@@ -38,7 +38,7 @@ defmodule AptdecoWeb.AptdecoLive do
     total_rows = list.total_pages
 
     Enum.map(1..total_rows, fn row_number ->
-      Aptdeco.paginated_product_list(row_number, number_of_products)
+      {row_number, Aptdeco.paginated_product_list(row_number, number_of_products)}
     end)
   end
 end

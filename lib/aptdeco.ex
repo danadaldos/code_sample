@@ -51,6 +51,12 @@ defmodule Aptdeco do
     }]
   """
 
+  def paginated_product_list(page, number) do
+    number
+    |> magnified_list()
+    |> Scrivener.paginate(page: page, page_size: 4)
+  end
+
   def product_list(json \\ @json_data) do
     json
     |> Jason.decode!(keys: :atoms)
@@ -59,17 +65,11 @@ defmodule Aptdeco do
     end)
   end
 
-  def paginated_product_list(page, number) do
-    number
-    |> magnified_list()
-    |> Scrivener.paginate(page: page, page_size: 4)
-  end
-
   # Fetches the product_list enough times to fill the page.
-  def magnified_list("10"), do: loop_call(2)
-  def magnified_list("25"), do: loop_call(5)
-  def magnified_list("50"), do: loop_call(10)
-  def magnified_list("100"), do: loop_call(20)
+  defp magnified_list("10"), do: loop_call(2)
+  defp magnified_list("25"), do: loop_call(5)
+  defp magnified_list("50"), do: loop_call(10)
+  defp magnified_list("100"), do: loop_call(20)
 
   defp loop_call(times),
     do: Enum.reduce(1..times, [], fn _num, acc -> acc ++ product_list() end)
